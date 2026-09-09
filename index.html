@@ -1,85 +1,758 @@
 <!doctype html>
-<html lang="ru">
+<html lang="ru" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Leader Engineering — прототип сайта</title>
-
-<!-- Точка входа репозитория.
-     Сам сайт лежит в /prototype: там же живут сборщик страниц услуг и
-     общая таблица стилей, поэтому переносить его в корень значило бы
-     ломать относительные пути внутри services/ и архива.
-     Эта страница только переводит посетителя на сайт.
-
-     GitHub Pages: Settings → Pages → Source: Deploy from a branch,
-     Branch: main, папка / (root). Тогда корень отдаёт этот файл,
-     а он уводит на /prototype/. -->
-
-<meta http-equiv="refresh" content="0; url=prototype/index.html">
-<link rel="canonical" href="prototype/index.html">
-<meta name="robots" content="noindex, follow">
-<meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="color-scheme" content="light dark">
-
-<!-- Страница самодостаточна: ни одного внешнего запроса, поэтому политика
-     максимально узкая. Скрипта здесь нет намеренно — переход делает
-     meta refresh, и 'unsafe-inline' для скриптов не требуется.
-     frame-ancestors здесь не указываем: в <meta> браузер её игнорирует,
-     она работает только заголовком, а GitHub Pages заголовки не отдаёт. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
-
-<style>
-  :root{
-    color-scheme:light;
-    --bg:#F5F7FA; --panel:#FFFFFF; --brand:#003362;
-    --ink:#142B40; --muted:#526477; --line:#DCE4ED;
-    --primary:#0755B5; --on-primary:#FFFFFF;
-  }
-  @media (prefers-color-scheme:dark){
-    :root{
-      color-scheme:dark;
-      --bg:#061B2D; --panel:#003362; --brand:#FFFFFF;
-      --ink:#FFFFFF; --muted:#B7C7D8; --line:#123A5E;
-      --primary:#1F6FDD;
-    }
-  }
-  *{box-sizing:border-box}
-  body{
-    margin:0;min-height:100svh;display:grid;place-items:center;padding:32px;
-    background:var(--bg);color:var(--muted);
-    font:400 17px/1.6 'Manrope','Segoe UI',system-ui,-apple-system,sans-serif;
-  }
-  .card{
-    max-width:520px;width:100%;padding:clamp(26px,5vw,40px);
-    background:var(--panel);border:1px solid var(--line);border-radius:16px;
-    text-align:center;
-  }
-  .mark{
-    display:inline-block;font-size:13px;font-weight:700;letter-spacing:.16em;
-    text-transform:uppercase;color:var(--brand);margin-bottom:22px;
-  }
-  h1{margin:0 0 12px;font-size:clamp(24px,4vw,30px);line-height:1.2;letter-spacing:-.02em;color:var(--ink)}
-  p{margin:0 0 26px}
-  a.go{
-    display:inline-block;padding:14px 26px;border-radius:10px;
-    background:var(--primary);color:var(--on-primary);
-    font-weight:600;text-decoration:none;
-  }
-  a.go:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
-  .links{margin-top:24px;padding-top:20px;border-top:1px solid var(--line);font-size:15px}
-  .links a{color:var(--primary);text-decoration:none}
-  .links a:hover{text-decoration:underline}
-</style>
+<title>Технадзор и строительный инжиниринг в Казахстане | Leader Engineering</title>
+<meta name="description" content="Технический надзор, техобследование и управление строительством с 2011 года. 567 проектов, 60 экспертов, 500 сданных объектов. Алматы, Астана, Павлодар.">
+<link rel="canonical" href="https://leadereng.kz/">
+<link rel="alternate" hreflang="ru" href="https://leadereng.kz/">
+<link rel="alternate" hreflang="en" href="https://leadereng.kz/eng">
+<link rel="alternate" hreflang="zh" href="https://leadereng.kz/cn">
+<link rel="alternate" hreflang="x-default" href="https://leadereng.kz/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_KZ">
+<meta property="og:site_name" content="Leader Engineering">
+<meta property="og:title" content="Технадзор, который защищает бюджет стройки">
+<meta property="og:description" content="567 проектов по Казахстану с 2011 года. Находим ошибки подрядчика до того, как они превращаются в расходы заказчика.">
+<meta property="og:url" content="https://leadereng.kz/">
+<meta property="og:image" content="https://static.tildacdn.pro/tild3263-3862-4662-b563-313066656264/_.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#003362">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css?v=ce51b444">
+<!-- Тема выставляется ДО первой отрисовки: если делать это из скрипта в конце
+     страницы, посетитель с сохранённой тёмной темой видит вспышку светлой. -->
+<script>(function(){try{var t=localStorage.getItem('le-theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}})();</script>
 </head>
 <body>
-  <main class="card">
-    <span class="mark">Leader Engineering</span>
-    <h1>Прототип сайта</h1>
-    <p>Сейчас откроется главная страница. Если переход не сработал, нажмите кнопку.</p>
-    <a class="go" href="prototype/index.html">Открыть сайт</a>
-    <div class="links">
-      <a href="prototype/services/technadzor/index.html">Страница услуги: технадзор</a>
+<a class="skip" href="#main">Перейти к содержимому</a>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top" aria-label="Leader Engineering, на главную">
+      <img class="lg-d" src="assets/logo.svg" alt="Leader Engineering" width="65" height="36">
+      <img class="lg-l" src="assets/logo-ink.svg" alt="Leader Engineering" width="65" height="36">
+    </a>
+    <nav class="nav-links" aria-label="Основная навигация">
+      <a href="#about">О компании</a>
+      <a href="#services">Услуги</a>
+      <a href="#portfolio">Портфолио</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <button class="icon-btn burger" id="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="mobileNav">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <div class="nav-side">
+      <div class="langs" aria-label="Язык сайта"><b aria-current="true">RU</b><a href="/eng">EN</a><a href="/cn">CN</a></div>
+      <a class="icon-btn" href="https://instagram.com/leader_engineering" target="_blank" rel="noopener" aria-label="Instagram Leader Engineering">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/>
+        </svg>
+      </a>
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Переключить тёмную и светлую тему">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+          <circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v17" /><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor" stroke="none"/>
+        </svg>
+      </button>
+      <a class="btn btn-primary btn-call" href="tel:+77076051414">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21.5 16.9v2.8a1.9 1.9 0 0 1-2.1 1.9 18.8 18.8 0 0 1-8.2-2.9 18.5 18.5 0 0 1-5.7-5.7A18.8 18.8 0 0 1 2.6 4.7 1.9 1.9 0 0 1 4.5 2.6h2.8a1.9 1.9 0 0 1 1.9 1.6c.12.9.35 1.79.68 2.63a1.9 1.9 0 0 1-.43 2L8.3 10a15.2 15.2 0 0 0 5.7 5.7l1.16-1.16a1.9 1.9 0 0 1 2-.43c.84.33 1.73.56 2.63.68a1.9 1.9 0 0 1 1.63 1.93z"/>
+        </svg>
+        <span>Позвонить</span>
+      </a>
     </div>
-  </main>
+  </div>
+  <nav class="mnav" id="mobileNav" aria-label="Мобильная навигация" hidden>
+    <a href="#about">О компании</a>
+    <a href="#services">Услуги</a>
+    <a href="#portfolio">Портфолио</a>
+    <a href="#contacts">Контакты</a>
+    <div class="mnav-langs" aria-label="Язык сайта"><b aria-current="true">RU</b><a href="/eng">EN</a><a href="/cn">CN</a></div>
+  </nav>
+</header>
+
+<main id="main">
+
+<!-- ================= 1. HERO =================
+     Две колонки: предложение слева, чертёж справа. Высота не растянута
+     на весь экран — на ноутбуке 800px видны заголовок, лид, обе кнопки
+     и полоса фактов. Графика лежит в своей колонке и текст не пересекает.
+     Фон — фирменный синий в обеих темах: страница открывается цветом бренда. -->
+<section class="hero" id="top" aria-label="Главный экран">
+  <div class="wrap hero-in">
+    <div class="hero-copy">
+      <span class="eyebrow rv">Инжиниринг и технадзор · с 2011 года</span>
+      <h1 class="display rv">Технадзор, который защищает бюджет</h1>
+      <p class="lead rv">Независимый контроль качества, объёмов и сроков на площадке. Находим ошибки подрядчика до того, как они превращаются в расходы.</p>
+      <div class="hero-cta rv">
+        <a class="btn btn-primary" href="#contacts">Обсудить проект <span class="arw">→</span></a>
+        <a class="btn btn-ghost on-media-ghost" href="#services">Что входит в надзор</a>
+      </div>
+      <ul class="hero-facts rv">
+        <li><b>2011</b><span>год основания</span></li>
+        <li><b>567+</b><span>проектов</span></li>
+        <li><b>60+</b><span>экспертов в штате</span></li>
+        <li><b>500+</b><span>сданных объектов</span></li>
+      </ul>
+    </div>
+
+    <figure class="hero-art rv">
+      <svg viewBox="0 0 560 376" role="img" aria-labelledby="hero-art-t" preserveAspectRatio="xMidYMid meet">
+        <title id="hero-art-t">Схематический разрез трёхэтажного каркаса: отметка нуля, размерная цепочка высоты и три точки контроля надзора</title>
+        <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <!-- координационная сетка, самая тонкая линия на листе -->
+          <g stroke="var(--art-line)" stroke-width="1" opacity=".26" stroke-dasharray="2 7">
+            <path d="M56 44V392M137 44V392M218 44V392M300 44V392M24 96H536M24 176H536M24 256H536"/>
+          </g>
+
+          <!-- грунт и штриховка разреза -->
+          <path d="M24 336H536" stroke="var(--art-steel)" stroke-width="1.5"/>
+          <g stroke="var(--art-line)" stroke-width="1" opacity=".55">
+            <path d="M28 358l16-18M60 358l16-18M92 358l16-18M124 358l16-18M156 358l16-18M188 358l16-18M220 358l16-18M252 358l16-18M284 358l16-18M316 358l16-18M348 358l16-18M380 358l16-18M412 358l16-18M444 358l16-18M476 358l16-18M508 358l16-18"/>
+          </g>
+
+          <!-- каркас: перекрытия и колонны, одна толщина линии -->
+          <g stroke="var(--art-steel)" stroke-width="1.6">
+            <path d="M56 336h244M56 256h244M56 176h244M56 96h244"/>
+            <path d="M56 96v240M137 96v240M218 96v240M300 96v240"/>
+            <path d="M50 88h256v8H50z"/>
+          </g>
+
+          <!-- заполнение этажей и остекление -->
+          <g fill="var(--art-fill)" opacity=".6">
+            <path d="M60 262h73v70H60zM141 262h73v70h-73zM222 262h74v70h-74z"/>
+            <path d="M60 182h73v70H60zM141 182h73v70h-73zM222 182h74v70h-74z"/>
+            <path d="M60 102h73v70H60zM141 102h73v70h-73zM222 102h74v70h-74z"/>
+          </g>
+          <g fill="var(--art-fill2)">
+            <path d="M74 278h45v30H74zM155 278h45v30h-45zM236 278h46v30h-46z"/>
+            <path d="M74 198h45v30H74zM155 198h45v30h-45zM236 198h46v30h-46z"/>
+            <path d="M74 118h45v30H74zM155 118h45v30h-45zM236 118h46v30h-46z"/>
+          </g>
+
+          <!-- башенный кран -->
+          <g stroke="var(--art-steel)" stroke-width="1.6">
+            <path d="M440 336V64"/>
+            <path d="M416 336h48M424 336l16-24M456 336l-16-24"/>
+            <path d="M372 64h152"/>
+            <path d="M440 64l-46 22M440 64l52 22"/>
+            <path d="M394 86h98"/>
+            <path d="M492 64v56"/>
+          </g>
+          <path d="M480 120h24v13h-24z" fill="var(--art-accent)"/>
+          <path d="M372 58h22v12h-22z" fill="var(--art-fill2)" stroke="var(--art-steel)" stroke-width="1.4"/>
+
+          <!-- отметка нуля -->
+          <g stroke="var(--art-accent)" stroke-width="1.4">
+            <path d="M22 336h22"/>
+            <path d="M33 336l-8 -11h16z" fill="var(--art-accent)" stroke="none"/>
+          </g>
+
+          <!-- размерная цепочка высоты -->
+          <g stroke="var(--art-accent)" stroke-width="1.2">
+            <path d="M330 96v240M322 96h16M322 336h16"/>
+          </g>
+
+          <!-- точки контроля по конструктиву -->
+          <g fill="var(--art-accent)">
+            <circle cx="137" cy="256" r="4.6"/>
+            <circle cx="218" cy="176" r="4.6"/>
+            <circle cx="300" cy="96" r="4.6"/>
+          </g>
+        </g>
+        <g font-family="Manrope,system-ui,sans-serif" font-size="12" font-weight="600" letter-spacing=".6" fill="var(--art-accent)">
+          <text x="22" y="322">0.000</text>
+          <text x="346" y="216" transform="rotate(-90 346 216)" text-anchor="middle">10 800</text>
+        </g>
+      </svg>
+      <figcaption>
+        <b>Контроль по этапам</b>
+        <span>Точки надзора закреплены за конструктивом: фундамент, каркас, кровля. Каждая закрывается актом.</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+<div id="navSentinel" aria-hidden="true" style="position:relative;height:1px;margin-top:-1px"></div>
+
+<!-- ================= БЕГУЩАЯ СТРОКА ================= -->
+<section class="mq-sec" aria-label="Клиенты компании">
+  <div class="wrap">
+    <div class="mq">
+      <div class="mq-track" id="mqTrack">
+        <div class="mq-group">
+          <img src="https://static.tildacdn.pro/tild3631-3763-4136-a131-373562386364/Group_76.png" alt="KAZ Minerals" loading="lazy">
+          <img src="https://static.tildacdn.pro/tild6539-3463-4630-a664-353466346362/Group_77.png" alt="ERG" loading="lazy">
+          <img src="https://static.tildacdn.pro/tild3133-3862-4938-b335-386133323365/Group_80.png" alt="КазМунайГаз" loading="lazy">
+          <img src="https://static.tildacdn.pro/tild6664-3466-4038-b663-366263303038/Group_81.png" alt="KazTransOil" loading="lazy">
+          <img src="https://static.tildacdn.pro/tild3165-6638-4238-b037-313566633135/Group_83.png" alt="Kazakhmys" loading="lazy">
+          <img src="https://static.tildacdn.pro/tild3663-3263-4535-a438-366438616439/Group_85.png" alt="KEGOC" loading="lazy">
+          <img src="https://static.tildacdn.pro/tild3833-3334-4338-b961-656138656264/Group_89.png" alt="Halyk" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 2. УСЛУГИ ================= -->
+<section class="section marked" id="services" aria-labelledby="services-h">
+  <div class="wrap">
+    <div class="svc-top">
+      <div class="sec-head">
+        <h2 class="h2 rv" id="services-h">Что мы делаем на площадке</h2>
+        <p class="lead rv">Восемь направлений, которые закрывают жизненный цикл объекта: от изысканий до зелёного сертификата. Выберите направление, чтобы перейти на страницу услуги.</p>
+      </div>
+
+      <figure class="svc-art rv">
+        <svg viewBox="0 0 720 380" role="img" aria-labelledby="art-t art-d">
+          <title id="art-t">Нулевой цикл строительства</title>
+          <desc id="art-d">Котлован, арматурный каркас фундаментной плиты, опалубка, сваи и башенный кран</desc>
+          <rect width="720" height="380" fill="var(--art-bg)"/>
+
+          <!-- разметочная сетка -->
+          <g stroke="var(--art-line)" stroke-width="1" opacity=".28">
+            <path d="M0 300h720M0 340h720"/><path d="M120 250v130M300 250v130M480 250v130M620 250v130"/>
+          </g>
+
+          <!-- кран -->
+          <g stroke="var(--art-steel)" stroke-width="3" fill="none" stroke-linecap="round">
+            <path d="M636 330V44"/><path d="M618 330h36"/><path d="M610 330l26-70 26 70" opacity=".45"/>
+            <g class="art-jib">
+              <path d="M472 74h224"/><path d="M636 34l58 40M636 34l-152 40"/><path d="M636 44V34"/>
+              <g class="art-hook">
+                <path d="M524 76v52" stroke-width="1.4"/>
+                <rect x="508" y="126" width="32" height="9" rx="3" fill="var(--art-accent)" stroke="none"/>
+              </g>
+            </g>
+          </g>
+
+          <!-- грунт и котлован -->
+          <path d="M0 250h720v130H0z" fill="var(--art-fill)" opacity=".38"/>
+          <path d="M60 250l50 52h360l50-52z" fill="var(--art-bg)"/>
+          <path d="M0 250h720M60 250l50 52h360l50-52" stroke="var(--art-line)" stroke-width="1.5" fill="none"/>
+
+          <!-- фундаментная плита и подбетонка -->
+          <rect x="110" y="302" width="360" height="26" rx="2" fill="var(--art-fill)"/>
+          <rect x="110" y="328" width="360" height="9" fill="var(--art-fill2)" opacity=".6"/>
+          <path d="M110 302h360v26H110z" stroke="var(--art-line)" stroke-width="1.4" fill="none"/>
+
+          <!-- арматурный каркас -->
+          <g stroke="var(--art-accent)" fill="none" stroke-linecap="round">
+            <g stroke-width="1.7">
+              <path d="M136 302v-76M180 302v-84M224 302v-78M268 302v-88M312 302v-78M356 302v-84M400 302v-76M444 302v-82"/>
+            </g>
+            <g stroke-width="1.2" opacity=".85">
+              <path d="M124 240h332M124 266h332M124 288h332"/>
+              <path d="M136 226l44-8M180 218l44 6M224 224l44-6M268 214l44 10M312 224l44-6M356 218l44 8M400 226l44-4"/>
+            </g>
+          </g>
+
+          <!-- опалубка -->
+          <g fill="var(--art-fill2)" stroke="var(--art-line)" stroke-width="1.3" opacity=".9">
+            <rect x="90" y="292" width="20" height="52"/><rect x="470" y="292" width="20" height="52"/>
+          </g>
+          <g stroke="var(--art-steel)" stroke-width="2" opacity=".75">
+            <path d="M78 306l12 10M78 330l12 10M502 306l-12 10M502 330l-12 10"/>
+          </g>
+
+          <!-- сваи -->
+          <g fill="var(--art-fill)" stroke="var(--art-line)" stroke-width="1.2" opacity=".8">
+            <rect x="150" y="337" width="24" height="43"/><rect x="278" y="337" width="24" height="43"/><rect x="406" y="337" width="24" height="43"/>
+          </g>
+
+          <!-- геодезическая отметка и размер -->
+          <g stroke="var(--art-accent)" stroke-width="1.1" fill="none">
+            <circle cx="34" cy="222" r="4.5" fill="var(--art-accent)"/><path d="M40 222h34"/>
+            <path d="M540 250v78M532 250h16M532 328h16"/>
+          </g>
+          <text x="80" y="226" fill="var(--art-accent)" font-family="Manrope,system-ui,sans-serif" font-size="12" font-weight="600" letter-spacing="1.4">0.000</text>
+          <text x="554" y="294" fill="var(--art-accent)" font-family="Manrope,system-ui,sans-serif" font-size="12" font-weight="600" letter-spacing="1.4">3.60</text>
+
+          <!-- передний план -->
+          <g stroke="var(--art-accent)" stroke-width="1.6" opacity=".8" stroke-linecap="round">
+            <path d="M596 366h84M602 358h84M608 350h84"/>
+          </g>
+        </svg>
+        <figcaption>
+          <b>Нулевой цикл</b>
+          <span>Надзор начинается до первого куба бетона: геология, разбивка осей, приёмка арматурного каркаса и опалубки.</span>
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="scards">
+      <a class="scard rv" href="services/technadzor/index.html">
+        <span class="scard-top"><span class="sicon-s" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3.5h6a1.5 1.5 0 0 1 1.5 1.5v.5h1.5A1.5 1.5 0 0 1 19.5 7v12.5A1.5 1.5 0 0 1 18 21H6a1.5 1.5 0 0 1-1.5-1.5V7A1.5 1.5 0 0 1 6 5.5h1.5V5A1.5 1.5 0 0 1 9 3.5z"/><path d="M8.5 13.2l2.2 2.2 4.6-4.8"/></svg></span><span class="num">01</span></span>
+        <h3>Технический надзор</h3>
+        <p>Контроль качества, объёмов и сроков на всех этапах строительства</p>
+        <span class="scard-foot"><span class="go">Подробнее об услуге</span><span class="gob" aria-hidden="true">→</span></span>
+      </a>
+      <a class="scard rv" href="services/tehobsledovanie/index.html">
+        <span class="scard-top"><span class="sicon-s" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 20.5h8V6.2L3.5 3.5z"/><path d="M11.5 20.5h4.2"/><path d="M6 8h3M6 11.5h3M6 15h3"/><circle cx="17" cy="12.4" r="3.6"/><path d="M19.7 15.2l2.2 2.3"/></svg></span><span class="num">02</span></span>
+        <h3>Техническое обследование</h3>
+        <p>Оценка состояния конструкций и заключение по несущей способности</p>
+        <span class="scard-foot"><span class="go">Подробнее об услуге</span><span class="gob" aria-hidden="true">→</span></span>
+      </a>
+      <a class="scard rv" href="services/upravlenie-proektom/index.html">
+        <span class="scard-top"><span class="sicon-s" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 5.2h9M3.5 12h13M3.5 18.8h7"/><circle cx="15.4" cy="5.2" r="2.1"/><circle cx="19.4" cy="12" r="2.1"/><circle cx="13.4" cy="18.8" r="2.1"/></svg></span><span class="num">03</span></span>
+        <h3>Управление проектом</h3>
+        <p>Функции заказчика, координация подрядчиков, бюджет и график</p>
+        <span class="scard-foot"><span class="go">Подробнее об услуге</span><span class="gob" aria-hidden="true">→</span></span>
+      </a>
+      <a class="scard rv" href="services/tehnicheskiy-audit/index.html">
+        <span class="scard-top"><span class="sicon-s" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 2.8h11a1.5 1.5 0 0 1 1.5 1.5v15.4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 5 19.7V4.3a1.5 1.5 0 0 1 1.5-1.5z"/><path d="M8.4 6.6h7.2v3.1H8.4z"/><path d="M8.6 13.4h.01M12 13.4h.01M15.4 13.4h.01M8.6 17h.01M12 17h.01M15.4 17h.01"/></svg></span><span class="num">04</span></span>
+        <h3>Технический аудит</h3>
+        <p>Разовая проверка смет, документации и фактически выполненных работ</p>
+        <span class="scard-foot"><span class="go">Подробнее об услуге</span><span class="gob" aria-hidden="true">→</span></span>
+      </a>
+      <a class="scard rv" href="services/finansovo-tehnicheskiy-kontrol/index.html">
+        <span class="scard-top"><span class="sicon-s" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 20.6h17.6"/><path d="M5.4 20.6V9.4M10.4 20.6V5.6M15.4 20.6v-8M20.2 20.6V3.4"/><path d="M4.2 12.6l5-5.6 5 4 5.4-6.4" stroke-dasharray="0"/></svg></span><span class="num">05</span></span>
+        <h3>Финансово-технический контроль</h3>
+        <p>Непрерывный контроль расходования средств для банка и инвестора</p>
+        <span class="scard-foot"><span class="go">Подробнее об услуге</span><span class="gob" aria-hidden="true">→</span></span>
+      </a>
+      <a class="scard onreq rv" href="#contacts">
+        <span class="scard-top"><span class="sicon-s" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.8 8.6L12 4.4l9.2 4.2L12 12.8z"/><path d="M2.8 13.1L12 17.3l9.2-4.2"/><path d="M2.8 17.4L12 21.6l9.2-4.2"/></svg></span><span class="num">06</span></span>
+        <h3>Геология и геодезия</h3>
+        <p>Инженерные изыскания и разбивочные работы, от 4 000 м²</p>
+        <span class="scard-foot"><span class="go">Обсудить услугу</span><span class="gob" aria-hidden="true">→</span></span>
+      </a>
+      <a class="scard onreq rv" href="#contacts">
+        <span class="scard-top"><span class="sicon-s" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12.9 2.6L5.4 13.1h5.3l-1.6 8.3 7.5-10.5h-5.3z"/></svg></span><span class="num">07</span></span>
+        <h3>Энергоаудит</h3>
+        <p>Энергомодель здания и план снижения потребления ресурсов</p>
+        <span class="scard-foot"><span class="go">Обсудить услугу</span><span class="gob" aria-hidden="true">→</span></span>
+      </a>
+      <a class="scard onreq rv" href="#contacts">
+        <span class="scard-top"><span class="sicon-s" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.4 3.6c0 8.4-4.2 12.6-10.5 12.6a5.9 5.9 0 0 1-5.9-5.9C4 4.8 11.3 3 20.4 3.6z"/><path d="M4.4 20.4c1.7-4.6 4.6-7.6 9-9.6"/></svg></span><span class="num">08</span></span>
+        <h3>Зелёная сертификация</h3>
+        <p>Сопровождение по BREEAM и LEED, статус Platinum Partner KazGBC</p>
+        <span class="scard-foot"><span class="go">Обсудить услугу</span><span class="gob" aria-hidden="true">→</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 3. ПОРТФОЛИО ================= -->
+<section class="section marked" id="portfolio" aria-labelledby="portfolio-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow rv">Портфолио</span>
+      <h2 class="h2 rv" id="portfolio-h">Проекты Leader Engineering</h2>
+    </div>
+
+    <div class="plist">
+      <article class="prow prow-lead rv">
+        <div class="pmedia">
+          <img src="https://optim.tildacdn.pro/tild3563-3563-4666-b765-653433386634/-/resize/960x/image_2118_1.jpg" alt="Школа, построенная под техническим надзором Leader Engineering" loading="lazy">
+          <span class="ptag meta">Регионы РК</span>
+        </div>
+        <div class="pbody">
+          <span class="pnum">01</span>
+          <h3>Samruk-Kazyna Construction</h3>
+          <p>Пять школ на 600 и 900 мест в разных регионах Казахстана. Технадзор полного цикла с единым регламентом контроля и сводной отчётностью по всем площадкам одновременно.</p>
+          <div class="pfacts">
+            <div><span class="meta">объектов</span><b>5</b></div>
+            <div><span class="meta">услуга</span><b>Технадзор</b></div>
+            <div><span class="meta">формат</span><b>Полный цикл</b></div>
+          </div>
+        </div>
+      </article>
+      <div class="pgrid">
+      <article class="pcard rv">
+        <div class="pmedia">
+          <img src="https://optim.tildacdn.pro/tild3134-3635-4634-b838-333762326632/-/resize/960x/photo.jpg" alt="Горно обогатительный комплекс: силосы, конвейерная галерея и обогатительная фабрика" loading="lazy">
+          <span class="ptag meta">Восточный Казахстан</span>
+        </div>
+        <div class="pbody">
+          <span class="pnum">02</span>
+          <h3>KAZ Minerals</h3>
+          <p>Горно обогатительный комплекс. Надзор за строительно монтажными работами, входной контроль оборудования и проверка соответствия проекту на каждом переделе.</p>
+          <div class="pfacts">
+            <div><span class="meta">тип</span><b>Промышленный</b></div>
+            <div><span class="meta">услуга</span><b>Технадзор</b></div>
+            <div><span class="meta">площадка</span><b>ГОК</b></div>
+          </div>
+        </div>
+      </article>
+      <article class="pcard rv">
+        <div class="pmedia">
+          <img src="https://optim.tildacdn.pro/tild6462-3237-4934-b961-343732393934/-/resize/960x/image_2114_1.jpg" alt="Индустриально логистический комплекс класса А с доковыми воротами" loading="lazy">
+          <span class="ptag meta">Астана</span>
+        </div>
+        <div class="pbody">
+          <span class="pnum">03</span>
+          <h3>Eurasian Logistics Park</h3>
+          <p>Индустриально логистический комплекс класса А. Управление проектом, тендеры по подрядчикам и технический аудит выполненных объёмов.</p>
+          <div class="pfacts">
+            <div><span class="meta">класс</span><b>А</b></div>
+            <div><span class="meta">услуга</span><b>Управление проектом</b></div>
+            <div><span class="meta">аудит</span><b>Да</b></div>
+          </div>
+        </div>
+      </article>
+      <article class="pcard rv">
+        <div class="pmedia">
+          <img src="https://optim.tildacdn.pro/tild3637-3237-4264-a439-376534353637/-/resize/960x/JTI.jpg" alt="Производственная площадка с шедовой кровлей и технологической эстакадой" loading="lazy">
+          <span class="ptag meta">Алматы</span>
+        </div>
+        <div class="pbody">
+          <span class="pnum">04</span>
+          <h3>Japan Tobacco International</h3>
+          <p>Производственная площадка международного стандарта. Технический контроль строительно монтажных работ и сопровождение по промышленной безопасности.</p>
+          <div class="pfacts">
+            <div><span class="meta">тип</span><b>Производство</b></div>
+            <div><span class="meta">услуга</span><b>Техконтроль</b></div>
+            <div><span class="meta">промбезопасность</span><b>Аккредитация</b></div>
+          </div>
+        </div>
+      </article>
+      <article class="pcard rv">
+        <div class="pmedia">
+          <img src="https://optim.tildacdn.pro/tild6135-6530-4761-a138-303839386531/-/resize/960x/image_2108_1.jpg" alt="Торгово развлекательный центр с остеклённым атриумом" loading="lazy">
+          <span class="ptag meta">Алматы</span>
+        </div>
+        <div class="pbody">
+          <span class="pnum">05</span>
+          <h3>MEGA Group</h3>
+          <p>Реконструкция действующего торгового центра без остановки работы. Обследование несущих конструкций и надзор за усилением в условиях работающего объекта.</p>
+          <div class="pfacts">
+            <div><span class="meta">тип</span><b>Реконструкция</b></div>
+            <div><span class="meta">услуга</span><b>Обследование, надзор</b></div>
+            <div><span class="meta">режим</span><b>Без остановки</b></div>
+          </div>
+        </div>
+      </article>
+      </div>
+    </div>
+    <div class="after-list rv">
+      <a class="btn btn-ghost" href="#contacts">Обсудить ваш объект <span class="arw">→</span></a>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ================= 4. О КОМПАНИИ ================= -->
+<section class="section trust" id="about" aria-labelledby="about-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="h2 rv" id="about-h">Leader Engineering в цифрах</h2>
+    </div>
+
+    <div class="stats rv">
+      <div class="stat">
+        <span class="tile" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21.5V3.2"/><path d="M5 4.2h12.6l-2.4 3.9 2.4 3.9H5"/></svg></span>
+        <div><div class="n">2011</div><div class="meta" style="margin-top:10px">год основания</div></div>
+      </div>
+      <div class="stat">
+        <span class="tile" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 3.5h9A1.5 1.5 0 0 1 18 5v13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 6 18.5V5a1.5 1.5 0 0 1 1.5-1.5z"/><path d="M9 11.6l2 2 4-4.2"/><path d="M20.5 6.6v11.9a3 3 0 0 1-3 3H8"/></svg></span>
+        <div><div class="n">567+</div><div class="meta" style="margin-top:10px">успешных проектов</div></div>
+      </div>
+      <div class="stat">
+        <span class="tile" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.2" cy="8" r="3.5"/><path d="M2.8 20.2a6.4 6.4 0 0 1 12.8 0"/><path d="M16.2 5.1a3.5 3.5 0 0 1 0 6.6"/><path d="M18 14.6a6.4 6.4 0 0 1 3.2 5.6"/></svg></span>
+        <div><div class="n">60+</div><div class="meta" style="margin-top:10px">экспертов в штате</div></div>
+      </div>
+      <div class="stat">
+        <span class="tile" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2.8 21.2h18.4"/><path d="M5 21.2V8.4l6-4.2 6 4.2v12.8"/><path d="M8.6 12.2h1.6M13.8 12.2h1.6M8.6 16.2h1.6M13.8 16.2h1.6"/></svg></span>
+        <div><div class="n">500+</div><div class="meta" style="margin-top:10px">сданных объектов</div></div>
+      </div>
+    </div>
+
+    <div class="sec-head sec-head-sub">
+      <h3 class="h3 rv">Заказчики, для которых мы работали</h3>
+      <p class="lead rv">Промышленность, энергетика, ритейл, транспорт и жильё. Логотипы приведены в оригинальном начертании правообладателей.</p>
+    </div>
+    <div class="lgrid rv">
+      <div class="lcell"><img src="https://static.tildacdn.pro/tild3631-3763-4136-a131-373562386364/Group_76.png" alt="KAZ Minerals" loading="lazy"></div>
+      <div class="lcell"><img src="https://static.tildacdn.pro/tild6539-3463-4630-a664-353466346362/Group_77.png" alt="ERG" loading="lazy"></div>
+      <div class="lcell"><img src="https://static.tildacdn.pro/tild3133-3862-4938-b335-386133323365/Group_80.png" alt="КазМунайГаз" loading="lazy"></div>
+      <div class="lcell"><img src="https://static.tildacdn.pro/tild6664-3466-4038-b663-366263303038/Group_81.png" alt="KazTransOil" loading="lazy"></div>
+      <div class="lcell"><img src="https://static.tildacdn.pro/tild3165-6638-4238-b037-313566633135/Group_83.png" alt="Kazakhmys" loading="lazy"></div>
+      <div class="lcell"><img src="https://static.tildacdn.pro/tild3663-3263-4535-a438-366438616439/Group_85.png" alt="KEGOC" loading="lazy"></div>
+      <div class="lcell"><img src="https://static.tildacdn.pro/tild3833-3334-4338-b961-656138656264/Group_89.png" alt="Halyk" loading="lazy"></div>
+      <div class="lcell"><img src="https://static.tildacdn.pro/tild3566-3561-4630-b664-643262323533/Group_90.png" alt="ПНХЗ" loading="lazy"></div>
+      <div class="lcell"><img src="https://static.tildacdn.pro/tild3930-3038-4634-b833-396433303731/Group_86.png" alt="УПНК" loading="lazy"></div>
+      <div class="lcell"><img src="https://static.tildacdn.pro/tild6462-6339-4665-b433-323535353566/Group_84.png" alt="Каустик" loading="lazy"></div>
+      <div class="lcell"><img src="https://static.tildacdn.pro/tild3665-6336-4834-a535-663735373230/Group_79.png" alt="Helios" loading="lazy"></div>
+      <div class="lcell"><img src="https://static.tildacdn.pro/tild3432-3336-4332-a335-653038393764/Group_82.png" alt="Japan Tobacco International" loading="lazy"></div>
+      <div class="lcell"><img src="https://static.tildacdn.pro/tild6133-3439-4039-b035-336361336438/Frame_1.png" alt="Eurasian Logistics Park" loading="lazy"></div>
+      <div class="lcell"><img src="https://static.tildacdn.pro/tild6335-6534-4562-a237-656166303362/Frame_4.png" alt="BI Group" loading="lazy"></div>
+      <div class="lcell"><img src="https://static.tildacdn.pro/tild6662-3263-4635-a639-363739353536/noroot.png" alt="Hyundai" loading="lazy"></div>
+      <div class="lcell"><img src="https://static.tildacdn.pro/tild3633-3437-4839-b632-383635336232/noroot.png" alt="Esentai Mall" loading="lazy"></div>
+      <div class="lcell"><img src="https://static.tildacdn.pro/tild6266-6665-4463-a130-643635326532/noroot.png" alt="Astana Motors" loading="lazy"></div>
+      <div class="lcell"><img src="https://static.tildacdn.pro/tild3234-3864-4565-a436-376263363664/Frame_5.png" alt="MEGA Silk Way" loading="lazy"></div>
+      <div class="lcell"><img src="https://static.tildacdn.pro/tild6365-6334-4666-a430-313765303563/Frame_8.png" alt="MEGA Alma-Ata" loading="lazy"></div>
+      <div class="lcell"><img src="https://static.tildacdn.pro/tild6330-3133-4462-b633-313230303136/Frame_2.png" alt="Qazaq Stroy" loading="lazy"></div>
+      <div class="lcell"><img src="https://static.tildacdn.pro/tild6362-6238-4331-b162-643964626665/Frame_3.png" alt="Sensata" loading="lazy"></div>
+      <div class="lcell"><img src="https://static.tildacdn.pro/tild3839-6330-4134-a365-373666613466/Frame_6.png" alt="Казахстанская жилищная компания" loading="lazy"></div>
+      <div class="lcell"><img src="https://static.tildacdn.pro/tild3939-6636-4537-b761-636636376338/Frame_7.png" alt="Атамура" loading="lazy"></div>
+      <div class="lcell"><img src="https://static.tildacdn.pro/tild3030-6133-4564-a635-383066613833/noroot.png" alt="МАД Курылыс" loading="lazy"></div>
+      <div class="lcell"><img src="https://static.tildacdn.pro/tild6533-6234-4839-b338-316432383730/noroot.png" alt="Teren Construction" loading="lazy"></div>
+      <div class="lcell"><img src="https://static.tildacdn.pro/tild6462-3734-4365-b935-353037313634/noroot.png" alt="ABS Строй" loading="lazy"></div>
+      <div class="lcell"><img src="https://static.tildacdn.pro/tild3439-3835-4366-b663-323061356162/Frame_10.png" alt="Магнум GO" loading="lazy"></div>
+      <div class="lcell"><img src="https://static.tildacdn.pro/tild6433-6133-4364-a565-376539356665/Frame_9.png" alt="Клиент Leader Engineering" loading="lazy"></div>
+    </div>
+
+    <div class="cred-split">
+      <div class="cred-col rv">
+        <h3 class="h3">Партнёрства и членство</h3>
+        <ul class="chips">
+          <li class="chip">Platinum Partner KazGBC</li>
+          <li class="chip">Член КАТНУП</li>
+          <li class="chip">Союз строителей Казахстана</li>
+          <li class="chip">Официальный партнёр PlanRadar</li>
+          <li class="chip">Поставщик услуг Alatau City</li>
+        </ul>
+      </div>
+      <div class="cred-col rv">
+        <h3 class="h3">Аккредитации</h3>
+        <ul class="chips">
+          <li class="chip">Аккредитация по промышленной безопасности</li>
+        </ul>
+        <p class="cred-note">Копии свидетельств и аттестатов предоставляем по запросу вместе с коммерческим предложением.</p>
+      </div>
+    </div>
+
+    <div class="final rv" id="contacts">
+      <figure class="final-plan">
+        <svg viewBox="0 0 300 340" role="img" aria-labelledby="plan-t plan-d">
+          <title id="plan-t">Схема плана этажа</title>
+          <desc id="plan-d">Схематичный план здания с осями, перегородками, лестничным узлом и размерными цепочками</desc>
+          <rect width="300" height="340" fill="var(--art-bg)"/>
+
+          <!-- координационные оси -->
+          <g stroke="var(--art-line)" stroke-width="1" opacity=".45" fill="none">
+            <path d="M18 44h264M18 178h264M18 296h264"/>
+            <path d="M44 18v304M148 18v304M252 18v304"/>
+            <circle cx="44" cy="18" r="9"/><circle cx="148" cy="18" r="9"/><circle cx="252" cy="18" r="9"/>
+          </g>
+          <g fill="var(--art-line)" font-family="Manrope,system-ui,sans-serif" font-size="8" font-weight="600" opacity=".9">
+            <text x="41" y="21">1</text><text x="145" y="21">2</text><text x="249" y="21">3</text>
+          </g>
+
+          <!-- наружные стены -->
+          <path d="M44 44h208v252H44z" fill="var(--art-fill)" opacity=".28"/>
+          <path d="M44 44h208v252H44z" stroke="var(--art-steel)" stroke-width="4.5" fill="none"/>
+
+          <!-- перегородки -->
+          <g stroke="var(--art-steel)" stroke-width="2.4" fill="none">
+            <path d="M148 44v58M148 140v156M44 178h104M196 178v118"/>
+          </g>
+          <!-- проёмы с распашкой -->
+          <g stroke="var(--art-line)" stroke-width="1.2" fill="none">
+            <path d="M148 102v38"/><path d="M148 110a30 30 0 0 1 30 30"/>
+            <path d="M44 210v34"/><path d="M52 210a34 34 0 0 1 34 34" opacity=".7"/>
+          </g>
+
+          <!-- штриховка помещения -->
+          <g stroke="var(--art-line)" stroke-width="1" opacity=".32">
+            <path d="M56 192h80M56 206h80M56 220h80M56 234h80M56 248h80M56 262h80M56 276h80"/>
+          </g>
+
+          <!-- лестничный узел -->
+          <g stroke="var(--art-line)" stroke-width="1.2" fill="none">
+            <path d="M162 196h30M162 210h30M162 224h30M162 238h30M162 252h30M162 266h30"/>
+            <path d="M162 196v82M192 196v82"/>
+          </g>
+
+          <!-- узел контроля -->
+          <g stroke="var(--art-accent)" stroke-width="1.2" fill="none">
+            <circle cx="196" cy="120" r="15"/><path d="M196 105V88M211 120h20"/>
+          </g>
+          <text x="190" y="124" fill="var(--art-accent)" font-family="Manrope,system-ui,sans-serif" font-size="10" font-weight="700">А</text>
+
+          <!-- размерные цепочки -->
+          <g stroke="var(--art-accent)" stroke-width="1" fill="none" opacity=".95">
+            <path d="M44 316h104M44 310v12M148 310v12"/>
+            <path d="M148 316h104M252 310v12"/>
+            <path d="M276 44v252M270 44h12M270 296h12"/>
+          </g>
+          <g fill="var(--art-accent)" font-family="Manrope,system-ui,sans-serif" font-size="9" font-weight="600" letter-spacing=".8">
+            <text x="72" y="334">7 200</text><text x="176" y="334">6 700</text>
+          </g>
+          <text x="292" y="176" fill="var(--art-accent)" font-family="Manrope,system-ui,sans-serif" font-size="9" font-weight="600" letter-spacing=".8" transform="rotate(-90 292 176)" text-anchor="middle">9 800</text>
+        </svg>
+      </figure>
+      <div>
+        <h2 class="h2">Пришлите проект, посчитаем объём надзора</h2>
+        <p class="lead" style="margin-top:16px">Ответим в течение рабочего дня. Алматы, Астана, Павлодар и объекты по всему Казахстану.</p>
+        <div class="final-actions">
+          <a class="btn btn-primary" href="https://wa.me/77089831888" target="_blank" rel="noopener">Написать в WhatsApp <span class="arw">→</span></a>
+          <a class="btn btn-ghost" href="mailto:info@leadereng.kz">info@leadereng.kz</a>
+        </div>
+      </div>
+      <address class="contacts" style="font-style:normal">
+        <div class="cline"><span class="meta">отдел продаж</span><a class="v" href="tel:+77076051414">+7 707 605 14 14</a></div>
+        <div class="cline"><span class="meta">офис</span><a class="v" href="tel:+77272223133">+7 727 222 31 33</a></div>
+        <div class="cline"><span class="meta">адрес</span><span class="v">Алматы, пр. Абылай хана, 115/60, офис 13</span></div>
+      </address>
+    </div>
+
+    <footer class="foot">
+      <span>© 2026 Leader Engineering</span>
+      <nav class="foot-links" aria-label="Дополнительная навигация">
+        <a href="https://instagram.com/leader_engineering" target="_blank" rel="noopener">Instagram</a>
+        <a href="#about">О компании</a>
+        <a href="#services">Услуги</a>
+        <a href="#portfolio">Портфолио</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+    </footer>
+  </div>
+</section>
+
+</main>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"ProfessionalService",
+  "name":"Leader Engineering",
+  "description":"Технический надзор, техобследование, управление строительными проектами, технический аудит, инженерные изыскания, энергоаудит и зелёная сертификация.",
+  "url":"https://leadereng.kz/",
+  "logo":"https://static.tildacdn.pro/tild6363-3038-4630-b232-343966343538/logo.svg",
+  "foundingDate":"2011",
+  "email":"info@leadereng.kz",
+  "telephone":"+7 707 605 14 14",
+  "priceRange":"$$",
+  "address":{"@type":"PostalAddress","streetAddress":"пр. Абылай хана, 115/60, офис 13","addressLocality":"Алматы","addressCountry":"KZ"},
+  "areaServed":[{"@type":"Country","name":"Казахстан"},{"@type":"City","name":"Алматы"},{"@type":"City","name":"Астана"},{"@type":"City","name":"Павлодар"}],
+  "sameAs":["https://instagram.com/leader_engineering"],
+  "hasOfferCatalog":{
+    "@type":"OfferCatalog","name":"Услуги",
+    "itemListElement":[
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Технический надзор"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Техническое обследование зданий"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Управление строительным проектом"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Технический аудит"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Инженерная геология и геодезия"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Энергоаудит"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Зелёная сертификация BREEAM и LEED"}}
+    ]
+  }
+}
+</script>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- тема ---------- */
+  var btn=document.getElementById('themeBtn');
+  try{var saved=localStorage.getItem('le-theme'); if(saved) root.setAttribute('data-theme',saved);}catch(e){}
+  btn.addEventListener('click',function(){
+    var next=root.getAttribute('data-theme')==='dark'?'light':'dark';
+    root.setAttribute('data-theme',next);
+    try{localStorage.setItem('le-theme',next)}catch(e){}
+  });
+
+  /* ---------- мобильное меню ---------- */
+  var burger=document.getElementById('burger'), mnav=document.getElementById('mobileNav');
+  if(burger&&mnav){
+    var setOpen=function(open){
+      burger.setAttribute('aria-expanded',String(open));
+      mnav.hidden=!open;
+      document.body.style.overflow=open?'hidden':'';
+    };
+    burger.addEventListener('click',function(){ setOpen(mnav.hidden); });
+    mnav.addEventListener('click',function(e){ if(e.target.tagName==='A') setOpen(false); });
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!mnav.hidden){ setOpen(false); burger.focus(); } });
+    /* при возврате на широкий экран меню не должно остаться открытым */
+    window.matchMedia('(min-width:1141px)').addEventListener('change',function(m){ if(m.matches) setOpen(false); });
+  }
+
+  /* ---------- подложка меню появляется при уходе с hero ---------- */
+  var nav=document.getElementById('nav'), sentinel=document.getElementById('navSentinel');
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){
+      nav.classList.toggle('solid',!es[0].isIntersecting);
+    },{rootMargin:'-'+(nav.offsetHeight+40)+'px 0px 0px 0px',threshold:0}).observe(sentinel);
+  }else{ nav.classList.add('solid'); }
+
+  /* ---------- бегущая строка: дублируем группу для бесшовного цикла ---------- */
+  var track=document.getElementById('mqTrack');
+  if(track){
+    var clone=track.firstElementChild.cloneNode(true);
+    clone.setAttribute('aria-hidden','true');
+    [].forEach.call(clone.querySelectorAll('img'),function(i){i.alt=''});
+    track.appendChild(clone);
+  }
+
+  /* ---------- аккордеон услуг с плавным раскрытием ----------
+     Состояние ведём через data-state, а не через d.open: пока идёт анимация
+     закрытия, элемент ещё open, и без отдельного признака повторный клик
+     перезапускал бы закрытие вместо открытия. Каждая новая анимация отменяет
+     предыдущую, иначе догоняющий onfinish схлопывает только что открытую панель. */
+  var rows=[].slice.call(document.querySelectorAll('details.srow'));
+  var EASE='cubic-bezier(.22,.61,.36,1)';
+  var running=new WeakMap();
+  function panelOf(d){return d.querySelector('.spanel')}
+  function animate(d,from,to,onDone){
+    var p=panelOf(d);
+    var prev=running.get(d);
+    if(prev){ running.delete(d); prev.cancel(); }
+    if(reduce||!p.animate){ onDone&&onDone(); return; }
+    var a=p.animate(
+      [{height:from,opacity:from==='0px'?0:1},{height:to,opacity:to==='0px'?0:1}],
+      {duration:to==='0px'?300:440,easing:to==='0px'?'cubic-bezier(.4,0,1,1)':EASE}
+    );
+    running.set(d,a);
+    a.addEventListener('finish',function(){
+      if(running.get(d)!==a) return;   /* нас отменили и заменили */
+      running.delete(d);
+      onDone&&onDone();
+    });
+  }
+  function openRow(d){
+    if(d.dataset.state==='open') return;
+    d.dataset.state='open';
+    d.open=true;
+    animate(d,'0px',panelOf(d).firstElementChild.offsetHeight+'px');
+  }
+  function closeRow(d){
+    if(d.dataset.state!=='open') return;
+    d.dataset.state='closed';
+    animate(d,panelOf(d).firstElementChild.offsetHeight+'px','0px',function(){
+      if(d.dataset.state==='closed') d.open=false;
+    });
+  }
+  rows.forEach(function(d){
+    d.dataset.state='closed';
+    d.querySelector('summary').addEventListener('click',function(ev){
+      ev.preventDefault();
+      if(d.dataset.state==='open'){ closeRow(d); return; }
+      rows.forEach(function(o){ if(o!==d) closeRow(o); });
+      openRow(d);
+    });
+  });
+
+  /* ---------- тема применяется до первой отрисовки ----------
+     Ранний скрипт в <head> уже выставил data-theme, здесь только кнопка. */
+
+  /* ---------- reveal ---------- */
+  var items=document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)||reduce){
+    [].forEach.call(items,function(el){el.classList.add('in')});
+    return;
+  }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting) return;
+      var el=e.target;
+      var sibs=[].filter.call(el.parentNode.children,function(n){return n.classList.contains('rv')});
+      var i=Math.min(sibs.indexOf(el),6);
+      el.style.transitionDelay=(i>0?i*55:0)+'ms';
+      el.classList.add('in');
+      io.unobserve(el);
+    });
+  },{rootMargin:'0px 0px -8% 0px',threshold:.12});
+  [].forEach.call(items,function(el){io.observe(el)});
+})();
+</script>
 </body>
 </html>
